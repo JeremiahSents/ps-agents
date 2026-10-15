@@ -57,48 +57,54 @@ Its environment is partially observable, stochastic, sequential, dynamic, and mu
 
 ## **Directed Graph**
 ```mermaid
-graph LR
+%%{init: {"flowchart": {"nodeSpacing": 70, "rankSpacing": 110, "curve": "basis"}}}%%
+graph TD
     subgraph Nairobi
         NBI[Nairobi]
     end
-    subgraph Central_Highlands
+    subgraph Central_Highlands["Central Highlands"]
         THK[Thika]
         NYR[Nyeri]
         NYK[Nanyuki]
         NYH[Nyahururu]
     end
-    subgraph Rift_Valley
+    subgraph Rift_Valley["Rift Valley"]
         NVS[Naivasha]
         NKR[Nakuru]
         NRK[Narok]
         KER[Kericho]
         ELD[Eldoret]
     end
-    subgraph Lake_Victoria_Basin
-        KSM[Kisumu]
-        KSI[Kisii]
-        KAK[Kakamega]
+    subgraph Lake_Victoria_Basin["Lake Victoria Basin"]
         WEB[Webuye]
+        KAK[Kakamega]
+        KSI[Kisii]
+        KSM[Kisumu]
     end
 
-    NBI -->|45| THK
-    NBI -->|90| NVS
-    NBI -->|142| NRK
-    THK -->|105| NYR
-    NYR -->|60| NYK
-    NYR -->|100| NYH
-    NYH -->|70| NKR
-    NVS -->|70| NKR
-    NKR -->|107| KER
-    NKR -->|156| ELD
-    NRK -->|170| KSI
-    KER -->|84| KSM
-    KER -->|100| KSI
-    ELD -->|115| KAK
-    ELD -->|60| WEB
-    WEB -->|40| KAK
-    KAK -->|52| KSM
-    KSI -->|112| KSM
+    NBI -->|"45 km"| THK
+    NBI -->|"90 km"| NVS
+    NBI -->|"142 km"| NRK
+    THK -->|"105 km"| NYR
+    NYR -->|"60 km"| NYK
+    NYR -->|"100 km"| NYH
+    NYH -->|"70 km"| NKR
+    NVS -->|"70 km"| NKR
+    NKR -->|"107 km"| KER
+    NKR -->|"156 km"| ELD
+    NRK -->|"170 km"| KSI
+    KER -->|"84 km"| KSM
+    KER -->|"100 km"| KSI
+    ELD -->|"115 km"| KAK
+    ELD -->|"60 km"| WEB
+    WEB -->|"40 km"| KAK
+    KAK -->|"52 km"| KSM
+    KSI -->|"112 km"| KSM
+
+    classDef start fill:#f4cccc,stroke:#990000,color:#000000
+    classDef goal fill:#b6d7a8,stroke:#38761d,stroke-width:3px,color:#000000
+    class NBI start
+    class KSM goal
 ```
 
 ## **Full Tree**
@@ -165,7 +171,7 @@ graph TD
     F29 -->|170| F30
     F31["Kisumu<br/>g = 424"]
     F30 -->|112| F31
-    classDef goal fill:#b6d7a8,stroke:#38761d,stroke-width:2px
+    classDef goal fill:#b6d7a8,stroke:#38761d,stroke-width:2px,color:#000000
     class F8,F10,F14,F16,F20,F22,F26,F28,F31 goal
 ```
 ## **Abstracted Tree**
@@ -204,15 +210,12 @@ graph TD
     K -->|112| O
     L -->|60| P
     L -->|115| Q
-    classDef goal fill:#b6d7a8,stroke:#38761d,stroke-width:3px
-    classDef pruned fill:#f4cccc,stroke:#990000,stroke-dasharray:5 5
-    classDef frontier fill:#fff2cc,stroke:#bf9000
-    classDef dead fill:#eeeeee,stroke:#666666
+    classDef goal fill:#b6d7a8,stroke:#38761d,stroke-width:3px,color:#000000
+    classDef pruned fill:#f4cccc,stroke:#990000,stroke-dasharray:5 5,color:#000000
+    classDef frontier fill:#fff2cc,stroke:#bf9000,color:#000000
+    classDef dead fill:#eeeeee,stroke:#666666,color:#000000
     class M goal
     class I,N,O pruned
     class P,Q frontier
     class G dead
 ```
-
-
-
