@@ -219,3 +219,36 @@ graph TD
     class P,Q frontier
     class G dead
 ```
+## Optimal Route from Nairobi to Kisumu, using Uniform Cost Search
+
+To determine the optimal path that the trailer can take from Nairobi to Kisumu, the Uniform Cost Search algorithm is applied, using the actual highway distances obtained from Google Maps ($g(n)$) as path costs.
+
+### **Node Expansion Sequence**
+1. **Nairobi** (Start Node, $g = 0$)
+   * Frontier: Thika ($g=45$), Naivasha ($g=90$), Narok ($g=142$)
+2. **Thika** ($g = 45$)
+   * Frontier: Naivasha ($g=90$), Narok ($g=142$), Nyeri ($g=150$)
+3. **Naivasha** ($g = 90$)
+   * Frontier: Narok ($g=142$), Nyeri ($g=150$), Nakuru ($g=160$)
+4. **Narok** ($g = 142$)
+   * Frontier: Nyeri ($g=150$), Nakuru ($g=160$), Kisii ($g=312$)
+5. **Nyeri** ($g = 150$)
+   * Frontier: Nakuru ($g=160$), Nanyuki ($g=210$), Nyahururu ($g=250$), Kisii ($g=312$)
+6. **Nakuru through Naivasha** ($g = 160$)
+   * Frontier: Nanyuki ($g=210$), Nyahururu ($g=250$), Kericho ($g=267$), Kisii ($g=312$), Eldoret ($g=316$)
+7. **Nanyuki** ($g = 210$) - *Dead end*
+8. **Nyahururu** ($g = 250$)
+   * Nakuru through Nyahururu ($g=320$) is **pruned** (Nakuru already explored at a lower cost $g=160$).
+9. **Kericho** ($g = 267$)
+   * Frontier: Kisii ($g=312$), Eldoret ($g=316$), Kisumu ($g=351$)
+10. **Kisumu** ($g = 351$) - **GOAL REACHED**
+
+---
+
+### **Summary of Results**
+
+| Metric | Details |
+| :--- | :--- |
+| **Optimal Path** | **Nairobi $\rightarrow$ Naivasha $\rightarrow$ Nakuru $\rightarrow$ Kericho $\rightarrow$ Kisumu** |
+| **Leg Breakdown** | • Nairobi $\rightarrow$ Naivasha: $90\text{ km}$<br>• Naivasha $\rightarrow$ Nakuru: $70\text{ km}$<br>• Nakuru $\rightarrow$ Kericho: $107\text{ km}$<br>• Kericho $\rightarrow$ Kisumu: $84\text{ km}$ |
+| **Total Optimal Distance** | **$351\text{ km}$** |
